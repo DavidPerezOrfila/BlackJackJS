@@ -17,6 +17,7 @@ const btnNuevo = document.querySelector("#btnNuevo");
 const btnDetener = document.querySelector("#btnDetener");
 
 const divCartasJugador = document.querySelector("#jugador-cartas");
+const divCartasComputadora = document.querySelector("#computadora-cartas");
 const puntosHTML = document.querySelectorAll("small");
 
 // Función que mezcla la baraja
@@ -59,7 +60,27 @@ const valorCarta = (carta) => {
     return isNaN(valor) ? cartaEspecial : valor * 1;
 };
 
+// Turno Computadora
+const turnoComputadora = (puntosMinimos) => {
+    do {
+        const carta = pedirCarta();
+        puntosComputadora += valorCarta(carta);
+        puntosHTML[1].innerText = puntosComputadora;
+
+        // <img class="carta" src="assets/cartas/2C.png">
+        const imgCarta = document.createElement("img");
+        imgCarta.src = `assets/cartas/${carta}.png`;
+        imgCarta.classList.add('carta');
+        divCartasComputadora.append(imgCarta);
+        if (puntosMinimos > 21) {
+            break;
+        }
+    } while ((puntosComputadora < puntosMinimos) && (puntosMinimos <= 21));
+}
+
 // Eventos
+
+// botón pedir
 btnPedir.addEventListener("click", () => {
     const carta = pedirCarta();
     puntosJugador += valorCarta(carta);
@@ -74,12 +95,29 @@ btnPedir.addEventListener("click", () => {
     if (puntosJugador > 21) {
         console.warn('Has perdido!');
         deshabilitarPedirCarta();
+        deshabilitarDetener();
+        turnoComputadora(puntosJugador);
     } else if (puntosJugador === 21) {
         console.warn('21, genial!');
         deshabilitarPedirCarta();
+        deshabilitarDetener();
+        turnoComputadora(puntosJugador);
     }
 });
 
+// botón detener
+btnDetener.addEventListener("click", () => {
+    deshabilitarPedirCarta();
+    deshabilitarDetener();
+
+    turnoComputadora(puntosJugador);
+});
+
+function deshabilitarDetener() {
+    btnDetener.classList.remove('btn-primary');
+    btnDetener.classList.add('btn-secondary');
+    btnDetener.disabled = true;
+}
 
 function deshabilitarPedirCarta() {
     btnPedir.classList.remove('btn-primary');

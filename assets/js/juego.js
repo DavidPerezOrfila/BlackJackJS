@@ -34,10 +34,7 @@ const crearDeck = () => {
             deck.push(especial + tipo);
         }
     }
-
-    console.log(deck);
     deck = _.shuffle(deck);
-    console.log({ deck: deck });
     return deck;
 };
 
@@ -105,12 +102,10 @@ btnPedir.addEventListener("click", () => {
     divCartasJugador.append(imgCarta);
 
     if (puntosJugador > 21) {
-        console.warn('Has perdido!');
         deshabilitarPedirCarta();
         deshabilitarDetener();
         turnoComputadora(puntosJugador);
     } else if (puntosJugador === 21) {
-        console.warn('21, genial!');
         deshabilitarPedirCarta();
         deshabilitarDetener();
         turnoComputadora(puntosJugador);

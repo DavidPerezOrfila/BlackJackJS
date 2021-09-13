@@ -101,11 +101,7 @@ btnPedir.addEventListener("click", () => {
     imgCarta.classList.add('carta');
     divCartasJugador.append(imgCarta);
 
-    if (puntosJugador > 21) {
-        deshabilitarPedirCarta();
-        deshabilitarDetener();
-        turnoComputadora(puntosJugador);
-    } else if (puntosJugador === 21) {
+    if ((puntosJugador > 21) ||(puntosJugador === 21)) {
         deshabilitarPedirCarta();
         deshabilitarDetener();
         turnoComputadora(puntosJugador);

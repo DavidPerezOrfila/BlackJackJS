@@ -1,6 +1,6 @@
 html,
 body {
-  margin: 0px auto;
+  margin: 0px;
   background-color: #2f4f30;
   color: white;
 }
@@ -20,7 +20,7 @@ body {
   margin-left: -75px;
 }
 
-#jugador-cartas,
-#computadora-cartas {
+#computadora-cartas,
+#jugador-cartas {
   height: 240px;
 }

@@ -1,3 +1,3 @@
-#BLACKJACK JS
+# BLACKJACK JS
 -------
 ### Pequeño juego de cartas en JavaScript
